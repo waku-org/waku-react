@@ -1,0 +1,53 @@
+{
+  "name": "@waku/react",
+  "version": "0.0.1",
+  "description": "React hooks and components to use js-waku",
+  "types": "./dist/index.d.ts",
+  "module": "./dist/index.js",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "type": "module",
+  "homepage": "https://github.com/waku-org/waku-ui",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/waku-org/waku-ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/waku-org/waku-ui/issues"
+  },
+  "license": "MIT OR Apache-2.0",
+  "keywords": [
+    "waku",
+    "decentralised",
+    "communication",
+    "web3",
+    "ethereum",
+    "dapps",
+    "react"
+  ],
+  "scripts": {
+    "build": "echo 0;",
+    "fix": "echo 0;",
+    "lint": "echo 0;",
+    "test": "echo 0;",
+    "prepublish": "npm run build"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "files": [
+    "dist",
+    "src/*.ts",
+    "!**/*.spec.*",
+    "!**/*.json",
+    "CHANGELOG.md",
+    "LICENSE",
+    "README.md"
+  ]
+}
