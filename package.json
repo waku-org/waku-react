@@ -39,8 +39,9 @@
   "engines": {
     "node": ">=18"
   },
-  "dependencies": {},
-  "devDependencies": {},
+  "dependencies": {
+    "react": "^18.2.0"
+  },
   "files": [
     "dist",
     "src/*.ts",
@@ -49,5 +50,9 @@
     "CHANGELOG.md",
     "LICENSE",
     "README.md"
-  ]
+  ],
+  "devDependencies": {
+    "@types/react": "^18.0.28",
+    "typescript": "^4.9.5"
+  }
 }
