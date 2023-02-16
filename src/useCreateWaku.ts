@@ -15,29 +15,45 @@ import type {
     RelayNode,
 } from "@waku/interfaces";
 import type { WakuOptions, RelayCreateOptions } from "@waku/core";
+import type { CrateWakuHook } from "./types";
 
 type NodeFactory<N, T = {}> = (options?: T) => Promise<N>;
-const useCreateNode = <N extends Waku, T = {}>(factory: NodeFactory<N, T>, options?: T): N | null => {
+
+const useCreateNode = <N extends Waku, T = {}>(factory: NodeFactory<N, T>, options?: T): CrateWakuHook<N> => {
     const [node, setNode] = useState<N | null>(null);
+    const [isLoading, setLoading] = useState<boolean>(true);
+    const [error, setError] = useState<null | string>(null);
 
     useEffect(() => {
         let cancelled = false;
+        setLoading(true);
 
-        factory(options).then(async (node) => {
-            if (cancelled) {
-                return;
-            }
+        factory(options)
+            .then(async (node) => {
+                if (cancelled) {
+                    return;
+                }
 
-            await node.start();
-            setNode(node);
-        });
+                await node.start();
+
+                setNode(node);
+                setLoading(false);
+            })
+            .catch((error) => {
+                setLoading(false);
+                setError(`Failed at creating node: ${error?.message || "no message"}`);
+            });
 
         return () => {
             cancelled = true;
         };
-    }, [factory, options]);
+    }, [factory, options, setNode, setLoading, setError]);
 
-    return node;
+    return {
+        node,
+        error,
+        isLoading,
+    };
 };
 
 export type LightNodeOptions = CreateOptions & WakuOptions;

@@ -10,25 +10,26 @@ import {
     useCreateRelayNode,
     useCreateFullNode,
 } from "./useCreateWaku";
+import type { CrateWakuHook } from "./types";
 
-type WakuContextType<T = Waku> = {
-    node: null | T;
-};
+type WakuContextType<T extends Waku> = CrateWakuHook<T>;
 
 export const WakuContext = React.createContext<WakuContextType<Waku>>({
     node: null,
+    isLoading: false,
+    error: null,
 });
 
 /**
  * Hook to retrieve Waku node from Context. By default generic Waku type will be used.
  * @example
- * const { node } = useWaku<LightNode>();
+ * const { node, isLoading, error } = useWaku<LightNode>();
  * @example
- * const { node } = useWaku<RelayNode>();
+ * const { node, isLoading, error } = useWaku<RelayNode>();
  * @example
- * const { node } = useWaku<FullNode>();
+ * const { node, isLoading, error } = useWaku<FullNode>();
  * @example
- * const { node } = useWaku();
+ * const { node, isLoading, error } = useWaku();
  * @returns WakuContext
  */
 export const useWaku = <T extends Waku>(): WakuContextType<T> => React.useContext(WakuContext) as WakuContextType<T>;
@@ -50,7 +51,7 @@ type ProviderProps<T> = ReactChildrenProps & {
  *  </LightNodeProvider>
  * );
  * const Component = (props) => {
- *  const { node } = useWaku<LightNode>();
+ *  const { node, isLoading, error } = useWaku<LightNode>();
  *  ...
  * };
  * @param {Object} props - options to create a node and other React props
@@ -58,10 +59,10 @@ type ProviderProps<T> = ReactChildrenProps & {
  * @returns React Light Node provider component
  */
 export const LightNodeProvider: React.FunctionComponent<ProviderProps<LightNodeOptions>> = (props) => {
-    const node = useCreateLightNode(props.options);
+    const result = useCreateLightNode(props.options);
 
     return (
-        <WakuContext.Provider value={{ node }}>
+        <WakuContext.Provider value={result}>
             {props.children}
         </WakuContext.Provider>
     );
@@ -76,7 +77,7 @@ export const LightNodeProvider: React.FunctionComponent<ProviderProps<LightNodeO
  *  </RelayNodeProvider>
  * );
  * const Component = (props) => {
- *  const { node } = useWaku<RelayNode>();
+ *  const { node, isLoading, error } = useWaku<RelayNode>();
  *  ...
  * };
  * @param {Object} props - options to create a node and other React props
@@ -84,10 +85,10 @@ export const LightNodeProvider: React.FunctionComponent<ProviderProps<LightNodeO
  * @returns React Relay Node provider component
  */
 export const RelayNodeProvider: React.FunctionComponent<ProviderProps<RelayNodeOptions>> = (props) => {
-    const node = useCreateRelayNode(props.options);
+    const result = useCreateRelayNode(props.options);
 
     return (
-        <WakuContext.Provider value={{ node }}>
+        <WakuContext.Provider value={result}>
             {props.children}
         </WakuContext.Provider>
     );
@@ -102,7 +103,7 @@ export const RelayNodeProvider: React.FunctionComponent<ProviderProps<RelayNodeO
  *  </FullNodeProvider>
  * );
  * const Component = (props) => {
- *  const { node } = useWaku<FullNode>();
+ *  const { node, isLoading, error } = useWaku<FullNode>();
  *  ...
  * };
  * @param {Object} props - options to create a node and other React props
@@ -110,10 +111,10 @@ export const RelayNodeProvider: React.FunctionComponent<ProviderProps<RelayNodeO
  * @returns React Full Node provider component
  */
 export const FullNodeProvider: React.FunctionComponent<ProviderProps<FullNodeOptions>> = (props) => {
-    const node = useCreateFullNode(props.options);
+    const result = useCreateFullNode(props.options);
 
     return (
-        <WakuContext.Provider value={{ node }}>
+        <WakuContext.Provider value={result}>
             {props.children}
         </WakuContext.Provider>
     );
