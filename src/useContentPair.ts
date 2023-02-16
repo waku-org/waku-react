@@ -15,7 +15,7 @@ type ContentPair = {
  */
 export const useContentPair = (
   contentTopic: string,
-  ephemeral?: boolean
+  ephemeral?: boolean,
 ): ContentPair => {
   const [encoder, setEncoder] = useState<null | Encoder>(null);
   const [decoder, setDecoder] = useState<null | Decoder>(null);

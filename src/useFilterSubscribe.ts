@@ -13,7 +13,7 @@ type UseFilterSubscribeResult = HookState & {
 };
 
 export const useFilterSubscribe = (
-  params: UseFilterSubscribeParams
+  params: UseFilterSubscribeParams,
 ): UseFilterSubscribeResult => {
   const { waku, decoder } = params;
 
@@ -25,7 +25,7 @@ export const useFilterSubscribe = (
     (message: IDecodedMessage): void => {
       setMessage((prev) => [...prev, message]);
     },
-    [setMessage]
+    [setMessage],
   );
 
   useEffect(() => {
@@ -41,7 +41,7 @@ export const useFilterSubscribe = (
       .catch((err) => {
         setLoading(false);
         setError(
-          `Failed to subscribe to filer: ${err?.message || "no message"}`
+          `Failed to subscribe to filer: ${err?.message || "no message"}`,
         );
       });
 

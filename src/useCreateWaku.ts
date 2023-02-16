@@ -18,7 +18,7 @@ type CreateNodeParams<N extends Waku, T = {}> = BootstrapNodeOptions<T> & {
 };
 
 const useCreateNode = <N extends Waku, T = {}>(
-  params: CreateNodeParams<N, T>
+  params: CreateNodeParams<N, T>,
 ): CrateWakuHook<N> => {
   const { factory, options, protocols = [] } = params;
 
@@ -65,7 +65,7 @@ const useCreateNode = <N extends Waku, T = {}>(
  * @returns {CrateWakuHook} node, loading state and error
  */
 export const useCreateLightNode = (
-  params?: BootstrapNodeOptions<LightNodeOptions>
+  params?: BootstrapNodeOptions<LightNodeOptions>,
 ) => {
   return useCreateNode<LightNode, LightNodeOptions>({
     ...params,
@@ -79,7 +79,7 @@ export const useCreateLightNode = (
  * @returns {CrateWakuHook} node, loading state and error
  */
 export const useCreateRelayNode = (
-  params?: BootstrapNodeOptions<RelayNodeOptions>
+  params?: BootstrapNodeOptions<RelayNodeOptions>,
 ) => {
   return useCreateNode<RelayNode, RelayNodeOptions>({
     ...params,
@@ -93,7 +93,7 @@ export const useCreateRelayNode = (
  * @returns {CrateWakuHook} node, loading state and error
  */
 export const useCreateFullNode = (
-  params?: BootstrapNodeOptions<FullNodeOptions>
+  params?: BootstrapNodeOptions<FullNodeOptions>,
 ) => {
   return useCreateNode<FullNode, FullNodeOptions>({
     ...params,

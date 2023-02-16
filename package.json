@@ -46,6 +46,7 @@
     "fix": "npm run lint:fix",
     "lint": "eslint '**/*.{js,ts,tsx}'",
     "lint:fix": "npm run lint -- --fix",
+    "prettier:fix": "prettier --config .prettierrc --write \"**/*.{js,ts,tsx}\"",
     "test": "echo 0;",
     "prepublish": "npm run build"
   },
@@ -68,6 +69,7 @@
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-simple-import-sort": "^10.0.0",
+    "prettier": "^2.8.4",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-sourcemaps": "^0.6.3",
     "rollup-plugin-terser": "^7.0.2",
