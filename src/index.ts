@@ -19,3 +19,4 @@ export {
 } from "./WakuProvider";
 
 export { useContentPair } from "./useContentPair";
+export { useFilterSubscribe } from "./useFilterSubscribe";

@@ -57,9 +57,9 @@ const useCreateNode = <N extends Waku, T = {}>(params: CreateNodeParams<N, T>): 
                 setNode(node);
                 setLoading(false);
             })
-            .catch((error) => {
+            .catch((err) => {
                 setLoading(false);
-                setError(`Failed at creating node: ${error?.message || "no message"}`);
+                setError(`Failed at creating node: ${err?.message || "no message"}`);
             });
 
         return () => {

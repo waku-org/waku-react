@@ -10,10 +10,13 @@ import {
     RelayCreateOptions,
 } from "@waku/core";
 
-export type CrateWakuHook<T extends Waku> = {
-    node: null | T;
+export type HookState = {
     isLoading: boolean;
     error: null | string;
+};
+
+export type CrateWakuHook<T extends Waku> = HookState & {
+    node: null | T;
 };
 
 export type BootstrapNodeOptions<T = {}> = {
