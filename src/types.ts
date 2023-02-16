@@ -4,6 +4,6 @@ import type {
 
 export type CrateWakuHook<T extends Waku> = {
     node: null | T;
-    loading: boolean;
+    isLoading: boolean;
     error: null | string;
 };
