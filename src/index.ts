@@ -14,3 +14,5 @@ export {
     RelayNodeProvider,
     useWaku,
 } from "./WakuProvider";
+
+export { useContentPair } from "./useContentPair";
