@@ -1,9 +1,16 @@
-import { useEffect } from "react";
+export {
+    useCreateFullNode,
+    useCreateLightNode,
+    useCreateRelayNode,
+    FullNodeOptions,
+    LightNodeOptions,
+    RelayNodeOptions,
+} from "./useCreateWaku";
 
-const useMain = () => {
-    useEffect(() => {
-        console.log(1);
-    }, []);
-};
-
-export default useMain;
+export {
+    WakuContext,
+    FullNodeProvider,
+    LightNodeProvider,
+    RelayNodeProvider,
+    useWaku,
+} from "./WakuProvider";
