@@ -9,6 +9,7 @@ import {
     CreateOptions,
 } from "@waku/create";
 import type {
+    Waku,
     FullNode,
     LightNode,
     RelayNode,
@@ -16,16 +17,18 @@ import type {
 import type { WakuOptions, RelayCreateOptions } from "@waku/core";
 
 type NodeFactory<N, T = {}> = (options?: T) => Promise<N>;
-const useCreateNode = <N, T = {}>(factory: NodeFactory<N, T>, options?: T): N | null => {
+const useCreateNode = <N extends Waku, T = {}>(factory: NodeFactory<N, T>, options?: T): N | null => {
     const [node, setNode] = useState<N | null>(null);
 
     useEffect(() => {
         let cancelled = false;
 
-        factory(options).then((node) => {
+        factory(options).then(async (node) => {
             if (cancelled) {
                 return;
             }
+
+            await node.start();
             setNode(node);
         });
 
