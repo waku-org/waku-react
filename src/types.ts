@@ -5,6 +5,10 @@ import type {
 import type {
     CreateOptions,
 } from "@waku/create";
+import {
+    WakuOptions,
+    RelayCreateOptions,
+} from "@waku/core";
 
 export type CrateWakuHook<T extends Waku> = {
     node: null | T;
