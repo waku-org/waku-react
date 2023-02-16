@@ -1,10 +1,13 @@
 export {
-    useCreateFullNode,
-    useCreateLightNode,
-    useCreateRelayNode,
     FullNodeOptions,
     LightNodeOptions,
     RelayNodeOptions,
+} from "./types";
+
+export {
+    useCreateFullNode,
+    useCreateLightNode,
+    useCreateRelayNode,
 } from "./useCreateWaku";
 
 export {

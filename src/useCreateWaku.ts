@@ -3,10 +3,9 @@ import {
     useEffect,
 } from "react";
 import {
+    createFullNode,
     createLightNode,
     createRelayNode,
-    createFullNode,
-    CreateOptions,
 } from "@waku/create";
 import type {
     Waku,
@@ -14,12 +13,30 @@ import type {
     LightNode,
     RelayNode,
 } from "@waku/interfaces";
-import type { WakuOptions, RelayCreateOptions } from "@waku/core";
-import type { CrateWakuHook } from "./types";
+import {
+    waitForRemotePeer,
+} from "@waku/core";
+import type {
+    CrateWakuHook,
+    FullNodeOptions,
+    LightNodeOptions,
+    RelayNodeOptions,
+    BootstrapNodeOptions,
+} from "./types";
 
 type NodeFactory<N, T = {}> = (options?: T) => Promise<N>;
 
-const useCreateNode = <N extends Waku, T = {}>(factory: NodeFactory<N, T>, options?: T): CrateWakuHook<N> => {
+type CreateNodeParams<N extends Waku, T = {}> = BootstrapNodeOptions<T> & {
+    factory: NodeFactory<N, T>,
+};
+
+const useCreateNode = <N extends Waku, T = {}>(params: CreateNodeParams<N, T>): CrateWakuHook<N> => {
+    const {
+        factory,
+        options,
+        protocols = [],
+    } = params;
+
     const [node, setNode] = useState<N | null>(null);
     const [isLoading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<null | string>(null);
@@ -35,6 +52,7 @@ const useCreateNode = <N extends Waku, T = {}>(factory: NodeFactory<N, T>, optio
                 }
 
                 await node.start();
+                await waitForRemotePeer(node, protocols);
 
                 setNode(node);
                 setLoading(false);
@@ -56,32 +74,38 @@ const useCreateNode = <N extends Waku, T = {}>(factory: NodeFactory<N, T>, optio
     };
 };
 
-export type LightNodeOptions = CreateOptions & WakuOptions;
 /**
  * Create Light Node helper hook. 
- * @param {LightNodeOptions} options - optional param to configure Light Node
- * @returns {LightNode}
+ * @param {Object} params - optional params to configure & bootstrap node
+ * @returns {CrateWakuHook} node, loading state and error
  */
-export const useCreateLightNode = (options?: LightNodeOptions) => {
-    return useCreateNode<LightNode, LightNodeOptions>(createLightNode, options);
+export const useCreateLightNode = (params?: BootstrapNodeOptions<LightNodeOptions>) => {
+    return useCreateNode<LightNode, LightNodeOptions>({
+        ...params,
+        factory: createLightNode,
+    });
 };
 
-export type RelayNodeOptions = CreateOptions & WakuOptions & Partial<RelayCreateOptions>;
 /**
  * Create Relay Node helper hook. 
- * @param {RelayNodeOptions} options - optional param to configure Relay Node
- * @returns {RelayNode}
+ * @param {Object} params - optional params to configure & bootstrap node
+ * @returns {CrateWakuHook} node, loading state and error
  */
-export const useCreateRelayNode = (options?: RelayNodeOptions) => {
-    return useCreateNode<RelayNode, RelayNodeOptions>(createRelayNode, options);
+export const useCreateRelayNode = (params?: BootstrapNodeOptions<RelayNodeOptions>) => {
+    return useCreateNode<RelayNode, RelayNodeOptions>({
+        ...params,
+        factory: createRelayNode,
+    });
 };
 
-export type FullNodeOptions = CreateOptions & WakuOptions & Partial<RelayCreateOptions>;
 /**
  * Create Full Node helper hook. 
- * @param {FullNodeOptions} options - optional param to configure Full Node
- * @returns {FullNode}
+ * @param {Object} params - optional params to configure & bootstrap node
+ * @returns {CrateWakuHook} node, loading state and error
  */
-export const useCreateFullNode = (options?: FullNodeOptions) => {
-    return useCreateNode<FullNode, FullNodeOptions>(createFullNode, options);
+export const useCreateFullNode = (params?: BootstrapNodeOptions<FullNodeOptions>) => {
+    return useCreateNode<FullNode, FullNodeOptions>({
+        ...params,
+        factory: createFullNode,
+    });
 };
