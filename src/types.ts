@@ -1,29 +1,25 @@
-import type {
-    Waku,
-    Protocols,
-} from "@waku/interfaces";
-import type {
-    CreateOptions,
-} from "@waku/create";
-import {
-    WakuOptions,
-    RelayCreateOptions,
-} from "@waku/core";
+import { RelayCreateOptions, WakuOptions } from "@waku/core";
+import type { CreateOptions } from "@waku/create";
+import type { Protocols, Waku } from "@waku/interfaces";
 
 export type HookState = {
-    isLoading: boolean;
-    error: null | string;
+  isLoading: boolean;
+  error: null | string;
 };
 
 export type CrateWakuHook<T extends Waku> = HookState & {
-    node: null | T;
+  node: null | T;
 };
 
 export type BootstrapNodeOptions<T = {}> = {
-    options?: T,
-    protocols?: Protocols[],
+  options?: T;
+  protocols?: Protocols[];
 };
 
 export type LightNodeOptions = CreateOptions & WakuOptions;
-export type RelayNodeOptions = CreateOptions & WakuOptions & Partial<RelayCreateOptions>;
-export type FullNodeOptions = CreateOptions & WakuOptions & Partial<RelayCreateOptions>;
+export type RelayNodeOptions = CreateOptions &
+  WakuOptions &
+  Partial<RelayCreateOptions>;
+export type FullNodeOptions = CreateOptions &
+  WakuOptions &
+  Partial<RelayCreateOptions>;

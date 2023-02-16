@@ -43,8 +43,9 @@
   ],
   "scripts": {
     "build": "rollup -c",
-    "fix": "echo 0;",
-    "lint": "echo 0;",
+    "fix": "npm run lint:fix",
+    "lint": "eslint '**/*.{js,ts,tsx}'",
+    "lint:fix": "npm run lint -- --fix",
     "test": "echo 0;",
     "prepublish": "npm run build"
   },
@@ -59,7 +60,14 @@
   "devDependencies": {
     "@rollup/plugin-commonjs": "^24.0.1",
     "@types/react": "^18.0.28",
+    "@typescript-eslint/eslint-plugin": "^5.52.0",
     "@waku/interfaces": "^0.0.7",
+    "eslint": "^8.34.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-simple-import-sort": "^10.0.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-sourcemaps": "^0.6.3",
     "rollup-plugin-terser": "^7.0.2",

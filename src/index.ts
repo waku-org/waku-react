@@ -1,22 +1,15 @@
-export {
-    FullNodeOptions,
-    LightNodeOptions,
-    RelayNodeOptions,
-} from "./types";
-
-export {
-    useCreateFullNode,
-    useCreateLightNode,
-    useCreateRelayNode,
-} from "./useCreateWaku";
-
-export {
-    WakuContext,
-    FullNodeProvider,
-    LightNodeProvider,
-    RelayNodeProvider,
-    useWaku,
-} from "./WakuProvider";
-
+export { FullNodeOptions, LightNodeOptions, RelayNodeOptions } from "./types";
 export { useContentPair } from "./useContentPair";
+export {
+  useCreateFullNode,
+  useCreateLightNode,
+  useCreateRelayNode,
+} from "./useCreateWaku";
 export { useFilterSubscribe } from "./useFilterSubscribe";
+export {
+  FullNodeProvider,
+  LightNodeProvider,
+  RelayNodeProvider,
+  useWaku,
+  WakuContext,
+} from "./WakuProvider";

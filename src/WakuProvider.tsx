@@ -1,26 +1,25 @@
 import React from "react";
+import type { Waku } from "@waku/interfaces";
+
 import type {
-    Waku,
-} from "@waku/interfaces";
-import {
-    useCreateLightNode,
-    useCreateRelayNode,
-    useCreateFullNode,
-} from "./useCreateWaku";
-import type {
-    CrateWakuHook,
-    FullNodeOptions,
-    LightNodeOptions,
-    RelayNodeOptions,
-    BootstrapNodeOptions,
+  BootstrapNodeOptions,
+  CrateWakuHook,
+  FullNodeOptions,
+  LightNodeOptions,
+  RelayNodeOptions,
 } from "./types";
+import {
+  useCreateFullNode,
+  useCreateLightNode,
+  useCreateRelayNode,
+} from "./useCreateWaku";
 
 type WakuContextType<T extends Waku> = CrateWakuHook<T>;
 
 export const WakuContext = React.createContext<WakuContextType<Waku>>({
-    node: null,
-    isLoading: false,
-    error: null,
+  node: null,
+  isLoading: false,
+  error: null,
 });
 
 /**
@@ -35,10 +34,11 @@ export const WakuContext = React.createContext<WakuContextType<Waku>>({
  * const { node, isLoading, error } = useWaku();
  * @returns WakuContext
  */
-export const useWaku = <T extends Waku>(): WakuContextType<T> => React.useContext(WakuContext) as WakuContextType<T>;
+export const useWaku = <T extends Waku>(): WakuContextType<T> =>
+  React.useContext(WakuContext) as WakuContextType<T>;
 
 type ReactChildrenProps = {
-    children?: React.ReactNode;
+  children?: React.ReactNode;
 };
 
 type ProviderProps<T> = ReactChildrenProps & BootstrapNodeOptions<T>;
@@ -60,17 +60,17 @@ type ProviderProps<T> = ReactChildrenProps & BootstrapNodeOptions<T>;
  * @param {Protocols} props.protocols - optional protocols list to initiate node with
  * @returns React Light Node provider component
  */
-export const LightNodeProvider: React.FunctionComponent<ProviderProps<LightNodeOptions>> = (props) => {
-    const result = useCreateLightNode({
-        options: props.options,
-        protocols: props.protocols,
-    });
+export const LightNodeProvider: React.FunctionComponent<
+  ProviderProps<LightNodeOptions>
+> = (props) => {
+  const result = useCreateLightNode({
+    options: props.options,
+    protocols: props.protocols,
+  });
 
-    return (
-        <WakuContext.Provider value={result}>
-            {props.children}
-        </WakuContext.Provider>
-    );
+  return (
+    <WakuContext.Provider value={result}>{props.children}</WakuContext.Provider>
+  );
 };
 
 /**
@@ -90,17 +90,17 @@ export const LightNodeProvider: React.FunctionComponent<ProviderProps<LightNodeO
  * @param {Protocols} props.protocols - optional protocols list to initiate node with
  * @returns React Relay Node provider component
  */
-export const RelayNodeProvider: React.FunctionComponent<ProviderProps<RelayNodeOptions>> = (props) => {
-    const result = useCreateRelayNode({
-        options: props.options,
-        protocols: props.protocols,
-    });
+export const RelayNodeProvider: React.FunctionComponent<
+  ProviderProps<RelayNodeOptions>
+> = (props) => {
+  const result = useCreateRelayNode({
+    options: props.options,
+    protocols: props.protocols,
+  });
 
-    return (
-        <WakuContext.Provider value={result}>
-            {props.children}
-        </WakuContext.Provider>
-    );
+  return (
+    <WakuContext.Provider value={result}>{props.children}</WakuContext.Provider>
+  );
 };
 
 /**
@@ -120,15 +120,15 @@ export const RelayNodeProvider: React.FunctionComponent<ProviderProps<RelayNodeO
  * @param {Protocols} props.protocols - optional protocols list to initiate node with
  * @returns React Full Node provider component
  */
-export const FullNodeProvider: React.FunctionComponent<ProviderProps<FullNodeOptions>> = (props) => {
-    const result = useCreateFullNode({
-        options: props.options,
-        protocols: props.protocols,
-    });
+export const FullNodeProvider: React.FunctionComponent<
+  ProviderProps<FullNodeOptions>
+> = (props) => {
+  const result = useCreateFullNode({
+    options: props.options,
+    protocols: props.protocols,
+  });
 
-    return (
-        <WakuContext.Provider value={result}>
-            {props.children}
-        </WakuContext.Provider>
-    );
+  return (
+    <WakuContext.Provider value={result}>{props.children}</WakuContext.Provider>
+  );
 };
