@@ -17,7 +17,7 @@ export const useFilterSubscribe = (
 ): UseFilterSubscribeResult => {
   const { waku, decoder } = params;
 
-  const [error, setError] = React.useState<null | string>(null);
+  const [error, setError] = React.useState<undefined | string>(undefined);
   const [isLoading, setLoading] = React.useState<boolean>(false);
   const [messages, setMessage] = React.useState<IDecodedMessage[]>([]);
 

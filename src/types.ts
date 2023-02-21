@@ -4,11 +4,11 @@ import type { Protocols, Waku } from "@waku/interfaces";
 
 export type HookState = {
   isLoading: boolean;
-  error: null | string;
+  error: undefined | string;
 };
 
 export type CrateWakuHook<T extends Waku> = HookState & {
-  node: null | T;
+  node: undefined | T;
 };
 
 export type BootstrapNodeOptions<T = {}> = {

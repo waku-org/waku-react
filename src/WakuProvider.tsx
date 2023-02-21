@@ -17,9 +17,9 @@ import {
 type WakuContextType<T extends Waku> = CrateWakuHook<T>;
 
 export const WakuContext = React.createContext<WakuContextType<Waku>>({
-  node: null,
+  node: undefined,
   isLoading: false,
-  error: null,
+  error: undefined,
 });
 
 /**

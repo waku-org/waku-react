@@ -22,9 +22,9 @@ const useCreateNode = <N extends Waku, T = {}>(
 ): CrateWakuHook<N> => {
   const { factory, options, protocols = [] } = params;
 
-  const [node, setNode] = React.useState<N | null>(null);
+  const [node, setNode] = React.useState<N | undefined>(undefined);
   const [isLoading, setLoading] = React.useState<boolean>(true);
-  const [error, setError] = React.useState<null | string>(null);
+  const [error, setError] = React.useState<undefined | string>(undefined);
 
   React.useEffect(() => {
     let cancelled = false;

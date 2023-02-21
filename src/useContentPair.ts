@@ -3,8 +3,8 @@ import { createDecoder, createEncoder } from "@waku/core";
 import type { Decoder, Encoder } from "@waku/core/dist/lib/message/version_0";
 
 type ContentPair = {
-  encoder: null | Encoder;
-  decoder: null | Decoder;
+  encoder: undefined | Encoder;
+  decoder: undefined | Decoder;
 };
 
 /**
@@ -17,8 +17,8 @@ export const useContentPair = (
   contentTopic: string,
   ephemeral?: boolean,
 ): ContentPair => {
-  const [encoder, setEncoder] = React.useState<null | Encoder>(null);
-  const [decoder, setDecoder] = React.useState<null | Decoder>(null);
+  const [encoder, setEncoder] = React.useState<undefined | Encoder>();
+  const [decoder, setDecoder] = React.useState<undefined | Decoder>();
 
   React.useEffect(() => {
     setEncoder(createEncoder(contentTopic, ephemeral));
