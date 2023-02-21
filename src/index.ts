@@ -5,7 +5,7 @@ export {
   useCreateLightNode,
   useCreateRelayNode,
 } from "./useCreateWaku";
-export { useFilterSubscribe } from "./useFilterSubscribe";
+export { useFilterMessages } from "./useFilterMessages";
 export {
   FullNodeProvider,
   LightNodeProvider,
