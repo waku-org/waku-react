@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import React from "react";
 import type { IDecodedMessage, IDecoder, Waku } from "@waku/interfaces";
 
 import type { HookState } from "./types";
@@ -17,18 +17,18 @@ export const useFilterSubscribe = (
 ): UseFilterSubscribeResult => {
   const { waku, decoder } = params;
 
-  const [error, setError] = useState<null | string>(null);
-  const [isLoading, setLoading] = useState<boolean>(false);
-  const [messages, setMessage] = useState<IDecodedMessage[]>([]);
+  const [error, setError] = React.useState<null | string>(null);
+  const [isLoading, setLoading] = React.useState<boolean>(false);
+  const [messages, setMessage] = React.useState<IDecodedMessage[]>([]);
 
-  const pushMessage = useCallback(
+  const pushMessage = React.useCallback(
     (message: IDecodedMessage): void => {
       setMessage((prev) => [...prev, message]);
     },
     [setMessage],
   );
 
-  useEffect(() => {
+  React.useEffect(() => {
     let unsubscribe: null | (() => Promise<void>) = null;
     setLoading(true);
 

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React from "react";
 import { waitForRemotePeer } from "@waku/core";
 import { createFullNode, createLightNode, createRelayNode } from "@waku/create";
 import type { FullNode, LightNode, RelayNode, Waku } from "@waku/interfaces";
@@ -22,11 +22,11 @@ const useCreateNode = <N extends Waku, T = {}>(
 ): CrateWakuHook<N> => {
   const { factory, options, protocols = [] } = params;
 
-  const [node, setNode] = useState<N | null>(null);
-  const [isLoading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<null | string>(null);
+  const [node, setNode] = React.useState<N | null>(null);
+  const [isLoading, setLoading] = React.useState<boolean>(true);
+  const [error, setError] = React.useState<null | string>(null);
 
-  useEffect(() => {
+  React.useEffect(() => {
     let cancelled = false;
     setLoading(true);
 

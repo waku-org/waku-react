@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React from "react";
 import { createDecoder, createEncoder } from "@waku/core";
 import type { Decoder, Encoder } from "@waku/core/dist/lib/message/version_0";
 
@@ -17,10 +17,10 @@ export const useContentPair = (
   contentTopic: string,
   ephemeral?: boolean,
 ): ContentPair => {
-  const [encoder, setEncoder] = useState<null | Encoder>(null);
-  const [decoder, setDecoder] = useState<null | Decoder>(null);
+  const [encoder, setEncoder] = React.useState<null | Encoder>(null);
+  const [decoder, setDecoder] = React.useState<null | Decoder>(null);
 
-  useEffect(() => {
+  React.useEffect(() => {
     setEncoder(createEncoder(contentTopic, ephemeral));
     setDecoder(createDecoder(contentTopic));
   }, [contentTopic, ephemeral]);
