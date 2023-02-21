@@ -4,7 +4,7 @@ import type { IDecodedMessage, IDecoder, Waku } from "@waku/interfaces";
 import type { HookState } from "./types";
 
 type UseFilterSubscribeParams = {
-  waku: Waku;
+  node: Waku;
   decoder: IDecoder<IDecodedMessage>;
 };
 
@@ -15,7 +15,7 @@ type UseFilterSubscribeResult = HookState & {
 export const useFilterSubscribe = (
   params: UseFilterSubscribeParams,
 ): UseFilterSubscribeResult => {
-  const { waku, decoder } = params;
+  const { node, decoder } = params;
 
   const [error, setError] = React.useState<undefined | string>(undefined);
   const [isLoading, setLoading] = React.useState<boolean>(false);
@@ -32,7 +32,7 @@ export const useFilterSubscribe = (
     let unsubscribe: null | (() => Promise<void>) = null;
     setLoading(true);
 
-    waku?.filter
+    node?.filter
       ?.subscribe([decoder], pushMessage)
       .then((unsubscribeFn) => {
         setLoading(false);
@@ -48,7 +48,7 @@ export const useFilterSubscribe = (
     return () => {
       unsubscribe?.();
     };
-  }, [waku, decoder, pushMessage, setError, setLoading]);
+  }, [node, decoder, pushMessage, setError, setLoading]);
 
   return {
     error,
