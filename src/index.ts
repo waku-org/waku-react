@@ -6,6 +6,7 @@ export {
   useCreateRelayNode,
 } from "./useCreateWaku";
 export { useFilterMessages } from "./useFilterMessages";
+export { useStoreMessages } from "./useStoreMessages";
 export {
   FullNodeProvider,
   LightNodeProvider,

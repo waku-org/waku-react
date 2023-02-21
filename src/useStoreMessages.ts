@@ -22,7 +22,7 @@ type UseStoreMessagesResult = HookState & {
   messages: IDecodedMessage[];
 };
 
-const useStoreMessages = (
+export const useStoreMessages = (
   params: UseStoreMessagesParams,
 ): UseStoreMessagesResult => {
   const { node, decoder, options } = params;
