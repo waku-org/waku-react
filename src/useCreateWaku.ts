@@ -50,7 +50,7 @@ const useCreateNode = <N extends Waku, T = {}>(
     return () => {
       cancelled = true;
     };
-  }, [factory, options, protocols, setNode, setLoading, setError]);
+  }, []);
 
   return {
     node,
