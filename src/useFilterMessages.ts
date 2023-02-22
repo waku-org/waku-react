@@ -1,5 +1,10 @@
 import React from "react";
-import type { IDecodedMessage, IDecoder, IFilter, Waku } from "@waku/interfaces";
+import type {
+  IDecodedMessage,
+  IDecoder,
+  IFilter,
+  Waku,
+} from "@waku/interfaces";
 
 import type { HookState } from "./types";
 
