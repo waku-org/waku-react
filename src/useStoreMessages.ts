@@ -2,9 +2,9 @@ import React from "react";
 import type {
   IDecodedMessage,
   IDecoder,
-  Waku,
   IStore,
   StoreQueryOptions,
+  Waku,
 } from "@waku/interfaces";
 
 import type { HookState } from "./types";
@@ -14,7 +14,7 @@ type AbstractStoreNode = Waku & {
 };
 
 type UseStoreMessagesParams = {
-  node: AbstractStoreNode;
+  node: undefined | AbstractStoreNode;
   decoder: IDecoder<IDecodedMessage>;
   options: StoreQueryOptions;
 };
@@ -44,6 +44,10 @@ export const useStoreMessages = (
   );
 
   React.useEffect(() => {
+    if (!node) {
+      return;
+    }
+
     let cancelled = false;
     setLoading(true);
 

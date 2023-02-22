@@ -1,14 +1,14 @@
 import React from "react";
-import type { IDecodedMessage, IDecoder, IFilter } from "@waku/interfaces";
+import type { IDecodedMessage, IDecoder, IFilter, Waku } from "@waku/interfaces";
 
 import type { HookState } from "./types";
 
-type AbstractFilterNode = {
+type AbstractFilterNode = Waku & {
   filter: IFilter;
 };
 
 type UseFilterMessagesParams = {
-  node: AbstractFilterNode;
+  node: undefined | AbstractFilterNode;
   decoder: IDecoder<IDecodedMessage>;
 };
 
@@ -27,12 +27,20 @@ export const useFilterMessages = (
 
   const pushMessage = React.useCallback(
     (message: IDecodedMessage): void => {
+      if (!message) {
+        return;
+      }
+
       setMessage((prev) => [...prev, message]);
     },
     [setMessage],
   );
 
   React.useEffect(() => {
+    if (!node) {
+      return;
+    }
+
     let unsubscribe: null | (() => Promise<void>) = null;
     setLoading(true);
 
