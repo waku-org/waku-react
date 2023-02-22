@@ -2,13 +2,14 @@ import React from "react";
 import type {
   IDecodedMessage,
   IDecoder,
+  Waku,
   IStore,
   StoreQueryOptions,
 } from "@waku/interfaces";
 
 import type { HookState } from "./types";
 
-type AbstractStoreNode = {
+type AbstractStoreNode = Waku & {
   store: IStore;
 };
 
@@ -32,8 +33,12 @@ export const useStoreMessages = (
   const [messages, setMessage] = React.useState<IDecodedMessage[]>([]);
 
   const pushMessage = React.useCallback(
-    (message: IDecodedMessage[]): void => {
-      setMessage((prev) => [...prev, ...message]);
+    (messages: IDecodedMessage[]): void => {
+      if (!messages || !messages.length) {
+        return;
+      }
+
+      setMessage((prev) => [...prev, ...messages]);
     },
     [setMessage],
   );
