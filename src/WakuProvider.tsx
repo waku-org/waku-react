@@ -6,8 +6,8 @@ import type {
   CrateNodeResult,
   FullNodeOptions,
   LightNodeOptions,
-  RelayNodeOptions,
   ReactChildrenProps,
+  RelayNodeOptions,
 } from "./types";
 import {
   useCreateFullNode,
