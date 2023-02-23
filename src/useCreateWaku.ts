@@ -50,6 +50,7 @@ const useCreateNode = <N extends Waku, T = {}>(
     return () => {
       cancelled = true;
     };
+    // TODO: missing any dependencies, it will prevent consecutive update if options change
   }, []);
 
   return {

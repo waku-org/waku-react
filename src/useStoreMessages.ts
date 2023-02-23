@@ -33,12 +33,12 @@ export const useStoreMessages = (
   const [messages, setMessage] = React.useState<IDecodedMessage[]>([]);
 
   const pushMessage = React.useCallback(
-    (messages: IDecodedMessage[]): void => {
-      if (!messages || !messages.length) {
+    (newMessages: IDecodedMessage[]): void => {
+      if (!newMessages || !newMessages.length) {
         return;
       }
 
-      setMessage((prev) => [...prev, ...messages]);
+      setMessage((prev) => [...prev, ...newMessages]);
     },
     [setMessage],
   );
@@ -83,7 +83,8 @@ export const useStoreMessages = (
     return () => {
       cancelled = true;
     };
-  }, [node, decoder, options, pushMessage, setError, setLoading]);
+    // TODO: missing dependency on options, it will prevent consecutive update if options change
+  }, [node, decoder, pushMessage, setError, setLoading]);
 
   return {
     error,
