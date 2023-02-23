@@ -15,7 +15,7 @@ type AbstractStoreNode = Waku & {
 
 type UseStoreMessagesParams = {
   node: undefined | AbstractStoreNode;
-  decoder: IDecoder<IDecodedMessage>;
+  decoder: undefined | IDecoder<IDecodedMessage>;
   options: StoreQueryOptions;
 };
 
@@ -44,7 +44,7 @@ export const useStoreMessages = (
   );
 
   React.useEffect(() => {
-    if (!node) {
+    if (!node || !decoder) {
       return;
     }
 

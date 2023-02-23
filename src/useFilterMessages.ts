@@ -14,7 +14,7 @@ type AbstractFilterNode = Waku & {
 
 type UseFilterMessagesParams = {
   node: undefined | AbstractFilterNode;
-  decoder: IDecoder<IDecodedMessage>;
+  decoder: undefined | IDecoder<IDecodedMessage>;
 };
 
 type UseFilterMessagesResult = HookState & {
@@ -42,7 +42,7 @@ export const useFilterMessages = (
   );
 
   React.useEffect(() => {
-    if (!node) {
+    if (!node || !decoder) {
       return;
     }
 
