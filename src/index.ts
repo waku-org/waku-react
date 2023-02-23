@@ -12,5 +12,8 @@ export {
   LightNodeProvider,
   RelayNodeProvider,
   useWaku,
-  WakuContext,
 } from "./WakuProvider";
+export {
+  useContentPair,
+  ContentPairProvider,
+} from "./ContentPairProvider";

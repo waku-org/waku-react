@@ -1,6 +1,7 @@
 import React from "react";
 import { createDecoder, createEncoder } from "@waku/core";
 import type { Decoder, Encoder } from "@waku/core/dist/lib/message/version_0";
+
 import type { ContentPair } from "./types";
 
 /**
