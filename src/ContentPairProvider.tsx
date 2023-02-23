@@ -43,7 +43,7 @@ type ContentPairProviderProps = ReactChildrenProps & {
 export const ContentPairProvider: React.FunctionComponent<
   ContentPairProviderProps
 > = (props) => {
-  const result = useCreateContentPair(props.contentPair, props.ephemeral);
+  const result = useCreateContentPair(props.contentTopic, props.ephemeral);
 
   return (
     <ContentPairContext.Provider value={result}>
