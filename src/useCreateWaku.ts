@@ -87,17 +87,3 @@ export const useCreateRelayNode = (
     factory: createRelayNode,
   });
 };
-
-/**
- * Create Full Node helper hook.
- * @param {Object} params - optional params to configure & bootstrap node
- * @returns {CrateWakuHook} node, loading state and error
- */
-export const useCreateFullNode = (
-  params?: BootstrapNodeOptions<FullNodeOptions>,
-) => {
-  return useCreateNode<FullNode, FullNodeOptions>({
-    ...params,
-    factory: createFullNode,
-  });
-};
