@@ -5,8 +5,8 @@ import { useCreateContentPair } from "./useCreatContentPair";
 type ContentPairContextType = Partial<ContentPair>;
 
 const ContentPairContext = React.createContext<ContentPairContextType>({
-    decoder: undefined,
-    encoder: undefined,
+  decoder: undefined,
+  encoder: undefined,
 });
 
 /**
@@ -15,11 +15,12 @@ const ContentPairContext = React.createContext<ContentPairContextType>({
  * const { encoder, decoder } = useContentPair();
  * @returns {Object} { encoder, decoder }
  */
-export const useContentPair = (): ContentPairContextType => React.useContext(ContentPairContext);
+export const useContentPair = (): ContentPairContextType =>
+  React.useContext(ContentPairContext);
 
 type ContentPairProviderProps = ReactChildrenProps & {
-    contentTopic: string;
-    ephemeral?: boolean;
+  contentTopic: string;
+  ephemeral?: boolean;
 };
 
 /**
@@ -38,10 +39,14 @@ type ContentPairProviderProps = ReactChildrenProps & {
  * @param {boolean} ephemeral - flag to set messages ephemeral according to RFC https://rfc.vac.dev/spec/14/
  * @returns React ContentPair Provider component
  */
-export const ContentPairProvider: React.FunctionComponent<ContentPairProviderProps> = (props) => {
-    const result = useCreateContentPair(props.contentPair, props.ephemeral);
+export const ContentPairProvider: React.FunctionComponent<
+  ContentPairProviderProps
+> = (props) => {
+  const result = useCreateContentPair(props.contentPair, props.ephemeral);
 
-    return (
-        <ContentPairContext.Provider value={result}>{props.children}</ContentPairContext.Provider>
-    )
+  return (
+    <ContentPairContext.Provider value={result}>
+      {props.children}
+    </ContentPairContext.Provider>
+  );
 };

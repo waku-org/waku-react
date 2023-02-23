@@ -1,3 +1,4 @@
+export { ContentPairProvider, useContentPair } from "./ContentPairProvider";
 export { FullNodeOptions, LightNodeOptions, RelayNodeOptions } from "./types";
 export { useCreateContentPair } from "./useCreatContentPair";
 export {
@@ -13,7 +14,3 @@ export {
   RelayNodeProvider,
   useWaku,
 } from "./WakuProvider";
-export {
-  useContentPair,
-  ContentPairProvider,
-} from "./ContentPairProvider";
