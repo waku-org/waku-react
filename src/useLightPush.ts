@@ -23,7 +23,7 @@ type PushFn = (
 ) => Promise<SendResult>;
 
 type UseLightPushResult = {
-  push: undefined | PushFn;
+  push?: undefined | PushFn;
 };
 
 /**
@@ -45,9 +45,7 @@ export const useLightPush = (
   );
 
   if (!node && !encoder) {
-    return {
-      push: undefined,
-    };
+    return {};
   }
 
   return {
