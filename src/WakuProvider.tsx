@@ -7,6 +7,7 @@ import type {
   FullNodeOptions,
   LightNodeOptions,
   RelayNodeOptions,
+  ReactChildrenProps,
 } from "./types";
 import {
   useCreateFullNode,
@@ -36,10 +37,6 @@ const WakuContext = React.createContext<WakuContextType<Waku>>({
  */
 export const useWaku = <T extends Waku>(): WakuContextType<T> =>
   React.useContext(WakuContext) as WakuContextType<T>;
-
-type ReactChildrenProps = {
-  children?: React.ReactNode;
-};
 
 type ProviderProps<T> = ReactChildrenProps & BootstrapNodeOptions<T>;
 
