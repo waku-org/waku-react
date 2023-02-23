@@ -1,5 +1,5 @@
 export { FullNodeOptions, LightNodeOptions, RelayNodeOptions } from "./types";
-export { useContentPair } from "./useContentPair";
+export { useCreateContentPair } from "./useCreatContentPair";
 export {
   useCreateFullNode,
   useCreateLightNode,

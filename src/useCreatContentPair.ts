@@ -1,11 +1,7 @@
 import React from "react";
 import { createDecoder, createEncoder } from "@waku/core";
 import type { Decoder, Encoder } from "@waku/core/dist/lib/message/version_0";
-
-type ContentPair = {
-  encoder: Encoder;
-  decoder: Decoder;
-};
+import type { ContentPair } from "./types";
 
 /**
  * Creates Encoder / Decoder pair for a given contentTopic.
@@ -13,7 +9,7 @@ type ContentPair = {
  * @param {boolean} ephemeral - makes messages ephemeral, default to false
  * @returns {Object} Encoder / Decoder pair
  */
-export const useContentPair = (
+export const useCreateContentPair = (
   contentTopic: string,
   ephemeral = false,
 ): ContentPair => {

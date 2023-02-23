@@ -1,6 +1,7 @@
 import { RelayCreateOptions, WakuOptions } from "@waku/core";
 import type { CreateOptions } from "@waku/create";
 import type { Protocols, Waku } from "@waku/interfaces";
+import type { Decoder, Encoder } from "@waku/core/dist/lib/message/version_0";
 
 export type HookState = {
   isLoading: boolean;
@@ -23,3 +24,8 @@ export type RelayNodeOptions = CreateOptions &
 export type FullNodeOptions = CreateOptions &
   WakuOptions &
   Partial<RelayCreateOptions>;
+
+export type ContentPair = {
+  encoder: Encoder;
+  decoder: Decoder;
+};
