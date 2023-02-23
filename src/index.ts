@@ -7,6 +7,7 @@ export {
   useCreateRelayNode,
 } from "./useCreateWaku";
 export { useFilterMessages } from "./useFilterMessages";
+export { useLightPush } from "./useLightPush";
 export { useStoreMessages } from "./useStoreMessages";
 export {
   FullNodeProvider,
