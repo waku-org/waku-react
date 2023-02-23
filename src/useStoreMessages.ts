@@ -23,6 +23,15 @@ type UseStoreMessagesResult = HookState & {
   messages: IDecodedMessage[];
 };
 
+/**
+ * Hook for retrieving messages from Store protocol based on options
+ * @example
+ * const { isLoading, error, messages } = useStoreMessages({node, decoder, options});
+ * @param {Object} node - node that implement Store, hook does nothing if undefined
+ * @param {Object} decoder - decoder to use for getting messages, hook does nothing if undefined
+ * @param {StoreQueryOptions} options - options to initiate query to get messages
+ * @returns {Object} hook state (isLoading, error) and messages array
+ */
 export const useStoreMessages = (
   params: UseStoreMessagesParams,
 ): UseStoreMessagesResult => {
