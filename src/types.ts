@@ -21,9 +21,6 @@ export type LightNodeOptions = CreateOptions & WakuOptions;
 export type RelayNodeOptions = CreateOptions &
   WakuOptions &
   Partial<RelayCreateOptions>;
-export type FullNodeOptions = CreateOptions &
-  WakuOptions &
-  Partial<RelayCreateOptions>;
 
 export type ContentPair = {
   encoder: Encoder;

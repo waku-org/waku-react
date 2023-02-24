@@ -1,5 +1,5 @@
 export { ContentPairProvider, useContentPair } from "./ContentPairProvider";
-export { FullNodeOptions, LightNodeOptions, RelayNodeOptions } from "./types";
+export { LightNodeOptions, RelayNodeOptions } from "./types";
 export { useCreateContentPair } from "./useCreatContentPair";
 export { useCreateLightNode, useCreateRelayNode } from "./useCreateWaku";
 export { useFilterMessages } from "./useFilterMessages";

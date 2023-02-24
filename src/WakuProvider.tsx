@@ -4,16 +4,11 @@ import type { Waku } from "@waku/interfaces";
 import type {
   BootstrapNodeOptions,
   CrateNodeResult,
-  FullNodeOptions,
   LightNodeOptions,
   ReactChildrenProps,
   RelayNodeOptions,
 } from "./types";
-import {
-  useCreateFullNode,
-  useCreateLightNode,
-  useCreateRelayNode,
-} from "./useCreateWaku";
+import { useCreateLightNode, useCreateRelayNode } from "./useCreateWaku";
 
 type WakuContextType<T extends Waku> = CrateNodeResult<T>;
 
