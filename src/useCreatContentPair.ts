@@ -1,26 +1,27 @@
-import { useEffect, useState } from "react";
+import React from "react";
 import { createDecoder, createEncoder } from "@waku/core";
 import type { Decoder, Encoder } from "@waku/core/dist/lib/message/version_0";
 
-type ContentPair = {
-  encoder: null | Encoder;
-  decoder: null | Decoder;
-};
+import type { ContentPair } from "./types";
 
 /**
  * Creates Encoder / Decoder pair for a given contentTopic.
  * @param {string} contentTopic - topic to orient to
- * @param {boolean} ephemeral - optional, makes messages ephemeral
+ * @param {boolean} ephemeral - makes messages ephemeral, default to false
  * @returns {Object} Encoder / Decoder pair
  */
-export const useContentPair = (
+export const useCreateContentPair = (
   contentTopic: string,
-  ephemeral?: boolean,
+  ephemeral = false,
 ): ContentPair => {
-  const [encoder, setEncoder] = useState<null | Encoder>(null);
-  const [decoder, setDecoder] = useState<null | Decoder>(null);
+  const [encoder, setEncoder] = React.useState<Encoder>(
+    createEncoder(contentTopic, ephemeral),
+  );
+  const [decoder, setDecoder] = React.useState<Decoder>(
+    createDecoder(contentTopic),
+  );
 
-  useEffect(() => {
+  React.useEffect(() => {
     setEncoder(createEncoder(contentTopic, ephemeral));
     setDecoder(createDecoder(contentTopic));
   }, [contentTopic, ephemeral]);

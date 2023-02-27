@@ -1,14 +1,15 @@
 import { RelayCreateOptions, WakuOptions } from "@waku/core";
+import type { Decoder, Encoder } from "@waku/core/dist/lib/message/version_0";
 import type { CreateOptions } from "@waku/create";
 import type { Protocols, Waku } from "@waku/interfaces";
 
 export type HookState = {
   isLoading: boolean;
-  error: null | string;
+  error: undefined | string;
 };
 
-export type CrateWakuHook<T extends Waku> = HookState & {
-  node: null | T;
+export type CrateNodeResult<T extends Waku> = HookState & {
+  node: undefined | T;
 };
 
 export type BootstrapNodeOptions<T = {}> = {
@@ -20,6 +21,12 @@ export type LightNodeOptions = CreateOptions & WakuOptions;
 export type RelayNodeOptions = CreateOptions &
   WakuOptions &
   Partial<RelayCreateOptions>;
-export type FullNodeOptions = CreateOptions &
-  WakuOptions &
-  Partial<RelayCreateOptions>;
+
+export type ContentPair = {
+  encoder: Encoder;
+  decoder: Decoder;
+};
+
+export type ReactChildrenProps = {
+  children?: React.ReactNode;
+};

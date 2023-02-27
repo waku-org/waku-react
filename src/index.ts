@@ -1,15 +1,9 @@
-export { FullNodeOptions, LightNodeOptions, RelayNodeOptions } from "./types";
-export { useContentPair } from "./useContentPair";
-export {
-  useCreateFullNode,
-  useCreateLightNode,
-  useCreateRelayNode,
-} from "./useCreateWaku";
-export { useFilterSubscribe } from "./useFilterSubscribe";
-export {
-  FullNodeProvider,
-  LightNodeProvider,
-  RelayNodeProvider,
-  useWaku,
-  WakuContext,
-} from "./WakuProvider";
+export { ContentPairProvider, useContentPair } from "./ContentPairProvider";
+export { LightNodeOptions, RelayNodeOptions } from "./types";
+export { useCreateContentPair } from "./useCreatContentPair";
+export { useCreateLightNode, useCreateRelayNode } from "./useCreateWaku";
+export { useFilterMessages } from "./useFilterMessages";
+export { useLightPush } from "./useLightPush";
+export { usePeers } from "./usePeers";
+export { useStoreMessages } from "./useStoreMessages";
+export { LightNodeProvider, RelayNodeProvider, useWaku } from "./WakuProvider";

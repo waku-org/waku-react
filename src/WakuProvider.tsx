@@ -3,23 +3,19 @@ import type { Waku } from "@waku/interfaces";
 
 import type {
   BootstrapNodeOptions,
-  CrateWakuHook,
-  FullNodeOptions,
+  CrateNodeResult,
   LightNodeOptions,
+  ReactChildrenProps,
   RelayNodeOptions,
 } from "./types";
-import {
-  useCreateFullNode,
-  useCreateLightNode,
-  useCreateRelayNode,
-} from "./useCreateWaku";
+import { useCreateLightNode, useCreateRelayNode } from "./useCreateWaku";
 
-type WakuContextType<T extends Waku> = CrateWakuHook<T>;
+type WakuContextType<T extends Waku> = CrateNodeResult<T>;
 
-export const WakuContext = React.createContext<WakuContextType<Waku>>({
-  node: null,
+const WakuContext = React.createContext<WakuContextType<Waku>>({
+  node: undefined,
   isLoading: false,
-  error: null,
+  error: undefined,
 });
 
 /**
@@ -36,10 +32,6 @@ export const WakuContext = React.createContext<WakuContextType<Waku>>({
  */
 export const useWaku = <T extends Waku>(): WakuContextType<T> =>
   React.useContext(WakuContext) as WakuContextType<T>;
-
-type ReactChildrenProps = {
-  children?: React.ReactNode;
-};
 
 type ProviderProps<T> = ReactChildrenProps & BootstrapNodeOptions<T>;
 
@@ -94,36 +86,6 @@ export const RelayNodeProvider: React.FunctionComponent<
   ProviderProps<RelayNodeOptions>
 > = (props) => {
   const result = useCreateRelayNode({
-    options: props.options,
-    protocols: props.protocols,
-  });
-
-  return (
-    <WakuContext.Provider value={result}>{props.children}</WakuContext.Provider>
-  );
-};
-
-/**
- * Provider for creating Full Node based on options passed.
- * @example
- * const App = (props) => (
- *  <FullNodeProvider options={{...}}>
- *      <Component />
- *  </FullNodeProvider>
- * );
- * const Component = (props) => {
- *  const { node, isLoading, error } = useWaku<FullNode>();
- *  ...
- * };
- * @param {Object} props - options to create a node and other React props
- * @param {FullNodeOptions} props.options - optional options for creating Full Node
- * @param {Protocols} props.protocols - optional protocols list to initiate node with
- * @returns React Full Node provider component
- */
-export const FullNodeProvider: React.FunctionComponent<
-  ProviderProps<FullNodeOptions>
-> = (props) => {
-  const result = useCreateFullNode({
     options: props.options,
     protocols: props.protocols,
   });

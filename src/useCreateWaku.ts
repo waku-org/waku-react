@@ -1,12 +1,11 @@
-import { useEffect, useState } from "react";
+import React from "react";
 import { waitForRemotePeer } from "@waku/core";
-import { createFullNode, createLightNode, createRelayNode } from "@waku/create";
-import type { FullNode, LightNode, RelayNode, Waku } from "@waku/interfaces";
+import { createLightNode, createRelayNode } from "@waku/create";
+import type { LightNode, RelayNode, Waku } from "@waku/interfaces";
 
 import type {
   BootstrapNodeOptions,
-  CrateWakuHook,
-  FullNodeOptions,
+  CrateNodeResult,
   LightNodeOptions,
   RelayNodeOptions,
 } from "./types";
@@ -19,14 +18,14 @@ type CreateNodeParams<N extends Waku, T = {}> = BootstrapNodeOptions<T> & {
 
 const useCreateNode = <N extends Waku, T = {}>(
   params: CreateNodeParams<N, T>,
-): CrateWakuHook<N> => {
+): CrateNodeResult<N> => {
   const { factory, options, protocols = [] } = params;
 
-  const [node, setNode] = useState<N | null>(null);
-  const [isLoading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<null | string>(null);
+  const [node, setNode] = React.useState<N | undefined>(undefined);
+  const [isLoading, setLoading] = React.useState<boolean>(true);
+  const [error, setError] = React.useState<undefined | string>(undefined);
 
-  useEffect(() => {
+  React.useEffect(() => {
     let cancelled = false;
     setLoading(true);
 
@@ -50,7 +49,8 @@ const useCreateNode = <N extends Waku, T = {}>(
     return () => {
       cancelled = true;
     };
-  }, [factory, options, protocols, setNode, setLoading, setError]);
+    // TODO: missing any dependencies, it will prevent consecutive update if options change
+  }, []);
 
   return {
     node,
@@ -84,19 +84,5 @@ export const useCreateRelayNode = (
   return useCreateNode<RelayNode, RelayNodeOptions>({
     ...params,
     factory: createRelayNode,
-  });
-};
-
-/**
- * Create Full Node helper hook.
- * @param {Object} params - optional params to configure & bootstrap node
- * @returns {CrateWakuHook} node, loading state and error
- */
-export const useCreateFullNode = (
-  params?: BootstrapNodeOptions<FullNodeOptions>,
-) => {
-  return useCreateNode<FullNode, FullNodeOptions>({
-    ...params,
-    factory: createFullNode,
   });
 };
