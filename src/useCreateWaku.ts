@@ -5,7 +5,7 @@ import type { LightNode, RelayNode, Waku } from "@waku/interfaces";
 
 import type {
   BootstrapNodeOptions,
-  CrateNodeResult,
+  CreateNodeResult,
   LightNodeOptions,
   RelayNodeOptions,
 } from "./types";
@@ -18,7 +18,7 @@ type CreateNodeParams<N extends Waku, T = {}> = BootstrapNodeOptions<T> & {
 
 const useCreateNode = <N extends Waku, T = {}>(
   params: CreateNodeParams<N, T>,
-): CrateNodeResult<N> => {
+): CreateNodeResult<N> => {
   const { factory, options, protocols = [] } = params;
 
   const [node, setNode] = React.useState<N | undefined>(undefined);
