@@ -103,7 +103,7 @@
   },
   "lint-staged": {
     "*.{js,ts,tsx}": [
-      "npm run fix"
+      "npm run fix && npm run type"
     ],
     "*.{md,json,yml}": [
       "prettier --write"
