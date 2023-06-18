@@ -3,14 +3,13 @@ import type { Waku } from "@waku/interfaces";
 
 import type {
   BootstrapNodeOptions,
-  CrateNodeResult,
+  CreateNodeResult,
   LightNodeOptions,
   ReactChildrenProps,
-  RelayNodeOptions,
 } from "./types";
-import { useCreateLightNode, useCreateRelayNode } from "./useCreateWaku";
+import { useCreateLightNode } from "./useCreateWaku";
 
-type WakuContextType<T extends Waku> = CrateNodeResult<T>;
+type WakuContextType<T extends Waku> = CreateNodeResult<T>;
 
 const WakuContext = React.createContext<WakuContextType<Waku>>({
   node: undefined,
@@ -56,36 +55,6 @@ export const LightNodeProvider: React.FunctionComponent<
   ProviderProps<LightNodeOptions>
 > = (props) => {
   const result = useCreateLightNode({
-    options: props.options,
-    protocols: props.protocols,
-  });
-
-  return (
-    <WakuContext.Provider value={result}>{props.children}</WakuContext.Provider>
-  );
-};
-
-/**
- * Provider for creating Relay Node based on options passed.
- * @example
- * const App = (props) => (
- *  <RelayNodeProvider options={{...}}>
- *      <Component />
- *  </RelayNodeProvider>
- * );
- * const Component = (props) => {
- *  const { node, isLoading, error } = useWaku<RelayNode>();
- *  ...
- * };
- * @param {Object} props - options to create a node and other React props
- * @param {RelayNodeOptions} props.options - optional options for creating Relay Node
- * @param {Protocols} props.protocols - optional protocols list to initiate node with
- * @returns React Relay Node provider component
- */
-export const RelayNodeProvider: React.FunctionComponent<
-  ProviderProps<RelayNodeOptions>
-> = (props) => {
-  const result = useCreateRelayNode({
     options: props.options,
     protocols: props.protocols,
   });

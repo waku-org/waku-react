@@ -8,7 +8,7 @@ export type HookState = {
   error: undefined | string;
 };
 
-export type CrateNodeResult<T extends Waku> = HookState & {
+export type CreateNodeResult<T extends Waku> = HookState & {
   node: undefined | T;
 };
 
