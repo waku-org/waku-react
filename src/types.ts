@@ -1,7 +1,6 @@
-import { RelayCreateOptions, WakuOptions } from "@waku/core";
-import type { Decoder, Encoder } from "@waku/core/dist/lib/message/version_0";
-import type { CreateOptions } from "@waku/create";
-import type { Protocols, Waku } from "@waku/interfaces";
+import type { RelayCreateOptions } from "@waku/relay";
+import type { waku } from "@waku/sdk";
+import type { Protocols, Waku, ProtocolCreateOptions } from "@waku/interfaces";
 
 export type HookState = {
   isLoading: boolean;
@@ -17,14 +16,14 @@ export type BootstrapNodeOptions<T = {}> = {
   protocols?: Protocols[];
 };
 
-export type LightNodeOptions = CreateOptions & WakuOptions;
-export type RelayNodeOptions = CreateOptions &
-  WakuOptions &
+export type LightNodeOptions = ProtocolCreateOptions & waku.WakuOptions;
+export type RelayNodeOptions = ProtocolCreateOptions &
+  waku.WakuOptions &
   Partial<RelayCreateOptions>;
 
 export type ContentPair = {
-  encoder: Encoder;
-  decoder: Decoder;
+  encoder: waku.Encoder;
+  decoder: waku.Decoder;
 };
 
 export type ReactChildrenProps = {

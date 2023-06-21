@@ -3,6 +3,7 @@ import type {
   IDecodedMessage,
   IDecoder,
   IFilter,
+  Unsubscribe,
   Waku,
 } from "@waku/interfaces";
 
@@ -54,11 +55,11 @@ export const useFilterMessages = (
       return;
     }
 
-    let unsubscribe: null | (() => Promise<void>) = null;
+    let unsubscribe: null | Unsubscribe = null;
     setLoading(true);
 
-    node.filter
-      .subscribe([decoder], pushMessage)
+    (node.filter
+      .subscribe([decoder], pushMessage) as Promise<Unsubscribe>)
       .then((unsubscribeFn) => {
         setLoading(false);
         unsubscribe = unsubscribeFn;

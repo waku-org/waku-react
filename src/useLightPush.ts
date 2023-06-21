@@ -39,7 +39,7 @@ export const useLightPush = (
 
   const push = React.useCallback<PushFn>(
     (message, opts = undefined) => {
-      return node!.lightPush.push(encoder as IEncoder, message, opts);
+      return node!.lightPush.send(encoder as IEncoder, message, opts);
     },
     [node, encoder],
   );
