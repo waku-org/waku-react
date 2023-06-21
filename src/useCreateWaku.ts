@@ -1,6 +1,6 @@
 import React from "react";
-import { waitForRemotePeer, createLightNode, createRelayNode } from "@waku/sdk";
 import type { LightNode, RelayNode, Waku } from "@waku/interfaces";
+import { createLightNode, createRelayNode, waitForRemotePeer } from "@waku/sdk";
 
 import type {
   BootstrapNodeOptions,

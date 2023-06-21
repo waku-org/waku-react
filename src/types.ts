@@ -1,6 +1,6 @@
+import type { ProtocolCreateOptions, Protocols, Waku } from "@waku/interfaces";
 import type { RelayCreateOptions } from "@waku/relay";
 import type { waku } from "@waku/sdk";
-import type { Protocols, Waku, ProtocolCreateOptions } from "@waku/interfaces";
 
 export type HookState = {
   isLoading: boolean;
