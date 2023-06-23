@@ -1,6 +1,6 @@
 {
   "name": "@waku/react",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "React hooks and components to use js-waku",
   "type": "module",
   "main": "dist/index.cjs.js",
