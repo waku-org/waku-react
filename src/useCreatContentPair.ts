@@ -1,6 +1,5 @@
 import React from "react";
-import { createDecoder, createEncoder } from "@waku/core";
-import type { Decoder, Encoder } from "@waku/core/dist/lib/message/version_0";
+import { createDecoder, createEncoder, waku } from "@waku/sdk";
 
 import type { ContentPair } from "./types";
 
@@ -14,15 +13,15 @@ export const useCreateContentPair = (
   contentTopic: string,
   ephemeral = false,
 ): ContentPair => {
-  const [encoder, setEncoder] = React.useState<Encoder>(
-    createEncoder(contentTopic, ephemeral),
+  const [encoder, setEncoder] = React.useState<waku.Encoder>(
+    createEncoder({ contentTopic, ephemeral }),
   );
-  const [decoder, setDecoder] = React.useState<Decoder>(
+  const [decoder, setDecoder] = React.useState<waku.Decoder>(
     createDecoder(contentTopic),
   );
 
   React.useEffect(() => {
-    setEncoder(createEncoder(contentTopic, ephemeral));
+    setEncoder(createEncoder({ contentTopic, ephemeral }));
     setDecoder(createDecoder(contentTopic));
   }, [contentTopic, ephemeral]);
 
