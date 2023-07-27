@@ -1,6 +1,6 @@
 {
   "name": "@waku/react",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "React hooks and components to use js-waku",
   "type": "module",
   "main": "dist/index.cjs.js",
@@ -59,8 +59,9 @@
     "node": ">=18"
   },
   "dependencies": {
-    "@waku/sdk": "^0.0.16",
-    "@waku/relay": "^0.0.3"
+    "@waku/sdk": "^0.0.17",
+    "@waku/relay": "^0.0.4",
+    "@waku/interfaces": "^0.0.16"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^24.0.1",
@@ -70,7 +71,6 @@
     "@types/react": "^18.0.28",
     "@types/testing-library__jest-dom": "^5.14.5",
     "@typescript-eslint/eslint-plugin": "^5.52.0",
-    "@waku/interfaces": "^0.0.15",
     "bundlewatch": "^0.3.3",
     "eslint": "^8.34.0",
     "eslint-config-prettier": "^8.6.0",
