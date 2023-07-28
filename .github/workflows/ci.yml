@@ -53,4 +53,4 @@ jobs:
       - name: Authenticate with registry
         run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ./.npmrc
 
-      - run: npm publish --tag next --access public
+      - run: npm publish --tag latest --access public
