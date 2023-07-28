@@ -1,19 +1,16 @@
-[![Discord chat](https://img.shields.io/discord/864066763682218004.svg?logo=discord&colorB=7289DA)](https://discord.gg/j5pGbn7MHZ)
+[![Discord chat](https://img.shields.io/discord/1110799176264056863.svg?logo=discord&colorB=7289DA)](https://discord.waku.org)
 
 # waku-ui
 
-Set of UI adapters and components for Waku JS.
+Set of UI adapters and components for [js-waku](https://github.com/waku-org/js-waku).
 
 ## Documentation
 
-- [Quick start](https://docs.wakuconnect.dev/docs/quick_start/)
-- [Full documentation](https://docs.wakuconnect.dev/)
+- [Quick start](https://docs.waku.org/guides/js-waku/quick-start)
+- [Full documentation](https://docs.waku.org/guides/js-waku)
 - [API documentation (`master` branch)](https://js.waku.org/)
-- [Waku Connect](https://wakuconnect.dev/)
-- [Waku](https://wakunetwork.com/)
+- [Waku](https://waku.org/)
 - [Vac](https://vac.dev/)
-
-API Documentation can also be generated locally:
 
 ## Contributing
 
