@@ -1,6 +1,5 @@
 import type { ProtocolCreateOptions, Protocols, Waku } from "@waku/interfaces";
-import type { RelayCreateOptions } from "@waku/relay";
-import type { waku } from "@waku/sdk";
+import type { relay, waku } from "@waku/sdk";
 
 export type HookState = {
   isLoading: boolean;
@@ -19,7 +18,7 @@ export type BootstrapNodeOptions<T = {}> = {
 export type LightNodeOptions = ProtocolCreateOptions & waku.WakuOptions;
 export type RelayNodeOptions = ProtocolCreateOptions &
   waku.WakuOptions &
-  Partial<RelayCreateOptions>;
+  Partial<relay.RelayCreateOptions>;
 
 export type ContentPair = {
   encoder: waku.Encoder;
