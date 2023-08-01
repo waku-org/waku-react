@@ -58,11 +58,6 @@
   "engines": {
     "node": ">=18"
   },
-  "dependencies": {
-    "@waku/sdk": "^0.0.17",
-    "@waku/relay": "^0.0.4",
-    "@waku/interfaces": "^0.0.16"
-  },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^24.0.1",
     "@swc/jest": "^0.2.24",
@@ -71,6 +66,7 @@
     "@types/react": "^18.0.28",
     "@types/testing-library__jest-dom": "^5.14.5",
     "@typescript-eslint/eslint-plugin": "^5.52.0",
+    "@waku/interfaces": "^0.0.16",
     "bundlewatch": "^0.3.3",
     "eslint": "^8.34.0",
     "eslint-config-prettier": "^8.6.0",
@@ -91,6 +87,7 @@
     "typescript": "^4.9.5"
   },
   "peerDependencies": {
+    "@waku/sdk": "^0.0.17",
     "react": "^16.8.0 || ^17 || ^18"
   },
   "bundlewatch": {
@@ -103,7 +100,7 @@
   },
   "lint-staged": {
     "*.{js,ts,tsx}": [
-      "npm run fix && npm run type"
+      "npm run fix"
     ],
     "*.{md,json,yml}": [
       "prettier --write"
