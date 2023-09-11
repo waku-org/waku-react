@@ -3,7 +3,6 @@ import type {
   IEncoder,
   ILightPush,
   IMessage,
-  ProtocolOptions,
   SendResult,
   Waku,
 } from "@waku/interfaces";
@@ -17,10 +16,7 @@ type UseLightPushParams = {
   node: undefined | AbstractLightPushNode;
 };
 
-type PushFn = (
-  message: IMessage,
-  opts?: ProtocolOptions,
-) => Promise<SendResult>;
+type PushFn = (message: IMessage) => Promise<SendResult>;
 
 type UseLightPushResult = {
   push?: undefined | PushFn;
@@ -38,8 +34,8 @@ export const useLightPush = (
   const { node, encoder } = params;
 
   const push = React.useCallback<PushFn>(
-    (message, opts = undefined) => {
-      return node!.lightPush.send(encoder as IEncoder, message, opts);
+    (message) => {
+      return node!.lightPush.send(encoder as IEncoder, message);
     },
     [node, encoder],
   );
