@@ -3,13 +3,14 @@ import type { Waku } from "@waku/interfaces";
 
 import type {
   BootstrapNodeOptions,
-  CreateNodeResult,
-  CreateWakuNodeOptions,
+  CrateNodeResult,
+  LightNodeOptions,
   ReactChildrenProps,
+  RelayNodeOptions,
 } from "./types";
-import { useCreateLightNode } from "./useCreateWaku";
+import { useCreateLightNode, useCreateRelayNode } from "./useCreateWaku";
 
-type WakuContextType<T extends Waku> = CreateNodeResult<T>;
+type WakuContextType<T extends Waku> = CrateNodeResult<T>;
 
 const WakuContext = React.createContext<WakuContextType<Waku>>({
   node: undefined,
@@ -47,14 +48,44 @@ type ProviderProps<T> = ReactChildrenProps & BootstrapNodeOptions<T>;
  *  ...
  * };
  * @param {Object} props - options to create a node and other React props
- * @param {CreateWakuNodeOptions} props.options - optional options for creating Light Node
+ * @param {LightNodeOptions} props.options - optional options for creating Light Node
  * @param {Protocols} props.protocols - optional protocols list to initiate node with
  * @returns React Light Node provider component
  */
 export const LightNodeProvider: React.FunctionComponent<
-  ProviderProps<CreateWakuNodeOptions>
+  ProviderProps<LightNodeOptions>
 > = (props) => {
   const result = useCreateLightNode({
+    options: props.options,
+    protocols: props.protocols,
+  });
+
+  return (
+    <WakuContext.Provider value={result}>{props.children}</WakuContext.Provider>
+  );
+};
+
+/**
+ * Provider for creating Relay Node based on options passed.
+ * @example
+ * const App = (props) => (
+ *  <RelayNodeProvider options={{...}}>
+ *      <Component />
+ *  </RelayNodeProvider>
+ * );
+ * const Component = (props) => {
+ *  const { node, isLoading, error } = useWaku<RelayNode>();
+ *  ...
+ * };
+ * @param {Object} props - options to create a node and other React props
+ * @param {RelayNodeOptions} props.options - optional options for creating Relay Node
+ * @param {Protocols} props.protocols - optional protocols list to initiate node with
+ * @returns React Relay Node provider component
+ */
+export const RelayNodeProvider: React.FunctionComponent<
+  ProviderProps<RelayNodeOptions>
+> = (props) => {
+  const result = useCreateRelayNode({
     options: props.options,
     protocols: props.protocols,
   });
