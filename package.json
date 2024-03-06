@@ -8,7 +8,7 @@
   "umd:main": "dist/index.umd.js",
   "unpkg": "dist/index.umd.js",
   "source": "src/index.ts",
-  "types": "dist/src/index.d.ts",
+  "types": "dist/index.d.ts",
   "sideEffects": false,
   "files": [
     "dist",
