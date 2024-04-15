@@ -1,14 +1,14 @@
 import React from "react";
 import type {
   IEncoder,
-  ILightPush,
+  ILightPushSDK,
   IMessage,
   SendResult,
   Waku,
 } from "@waku/interfaces";
 
 type AbstractLightPushNode = Waku & {
-  lightPush: ILightPush;
+  lightPush: ILightPushSDK;
 };
 
 type UseLightPushParams = {
