@@ -17,7 +17,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ env.NODE_JS }}
-      - uses: bahmutov/npm-install@v1
+      - run: npm i
       - run: npm run lint
       - run: npm run type
 
@@ -28,7 +28,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ env.NODE_JS }}
-      - uses: bahmutov/npm-install@v1
+      - run: npm i
       - run: npm run build
 
   release:
@@ -40,7 +40,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ env.NODE_JS }}
-      - uses: bahmutov/npm-install@v1
+      - run: npm i
 
       - name: Append git hash to version
         shell: bash
