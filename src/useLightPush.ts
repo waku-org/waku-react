@@ -3,7 +3,7 @@ import type {
   IEncoder,
   ILightPushSDK,
   IMessage,
-  SendResult,
+  SDKProtocolResult,
   Waku,
 } from "@waku/interfaces";
 
@@ -16,7 +16,7 @@ type UseLightPushParams = {
   node: undefined | AbstractLightPushNode;
 };
 
-type PushFn = (message: IMessage) => Promise<SendResult>;
+type PushFn = (message: IMessage) => Promise<SDKProtocolResult>;
 
 type UseLightPushResult = {
   push?: undefined | PushFn;
