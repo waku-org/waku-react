@@ -1,14 +1,14 @@
 import React from "react";
 import type {
   IEncoder,
-  ILightPush,
+  ILightPushSDK,
   IMessage,
-  SendResult,
+  SDKProtocolResult,
   Waku,
 } from "@waku/interfaces";
 
 type AbstractLightPushNode = Waku & {
-  lightPush: ILightPush;
+  lightPush: ILightPushSDK;
 };
 
 type UseLightPushParams = {
@@ -16,7 +16,7 @@ type UseLightPushParams = {
   node: undefined | AbstractLightPushNode;
 };
 
-type PushFn = (message: IMessage) => Promise<SendResult>;
+type PushFn = (message: IMessage) => Promise<SDKProtocolResult>;
 
 type UseLightPushResult = {
   push?: undefined | PushFn;
