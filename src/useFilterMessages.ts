@@ -58,7 +58,12 @@ export const useFilterMessages = (
     let unsubscribe: null | Unsubscribe = null;
     setLoading(true);
 
-    (node.filter.subscribe([decoder], pushMessage) as Promise<Unsubscribe>)
+    (
+      node.filter.subscribeWithUnsubscribe(
+        [decoder],
+        pushMessage,
+      ) as Promise<Unsubscribe>
+    )
       .then((unsubscribeFn) => {
         setLoading(false);
         unsubscribe = unsubscribeFn;
