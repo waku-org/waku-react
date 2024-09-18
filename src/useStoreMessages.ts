@@ -3,7 +3,7 @@ import type {
   IDecodedMessage,
   IDecoder,
   IStoreSDK,
-  StoreQueryOptions,
+  QueryRequestParams,
   Waku,
 } from "@waku/interfaces";
 
@@ -16,7 +16,7 @@ type AbstractStoreNode = Waku & {
 type UseStoreMessagesParams = {
   node: undefined | AbstractStoreNode;
   decoder: undefined | IDecoder<IDecodedMessage>;
-  options: StoreQueryOptions;
+  options: QueryRequestParams;
 };
 
 type UseStoreMessagesResult = HookState & {
@@ -29,7 +29,7 @@ type UseStoreMessagesResult = HookState & {
  * const { isLoading, error, messages } = useStoreMessages({node, decoder, options});
  * @param {Object} node - node that implement Store, hook does nothing if undefined
  * @param {Object} decoder - decoder to use for getting messages, hook does nothing if undefined
- * @param {StoreQueryOptions} options - options to initiate query to get messages
+ * @param {QueryRequestParams} options - options to initiate query to get messages
  * @returns {Object} hook state (isLoading, error) and messages array
  */
 export const useStoreMessages = (
