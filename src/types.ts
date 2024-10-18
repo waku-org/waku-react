@@ -1,4 +1,4 @@
-import type { Protocols, Waku } from "@waku/interfaces";
+import type { IWaku, Protocols } from "@waku/interfaces";
 import type { waku } from "@waku/sdk";
 export type { CreateWakuNodeOptions } from "@waku/sdk";
 
@@ -7,7 +7,7 @@ export type HookState = {
   error: undefined | string;
 };
 
-export type CreateNodeResult<T extends Waku> = HookState & {
+export type CreateNodeResult<T extends IWaku> = HookState & {
   node: undefined | T;
 };
 

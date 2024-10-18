@@ -3,13 +3,13 @@ import type {
   IDecodedMessage,
   IDecoder,
   IFilter,
+  IWaku,
   Unsubscribe,
-  Waku,
 } from "@waku/interfaces";
 
 import type { HookState } from "./types";
 
-type AbstractFilterNode = Waku & {
+type AbstractFilterNode = IWaku & {
   filter: IFilter;
 };
 

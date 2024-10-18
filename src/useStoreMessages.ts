@@ -2,15 +2,15 @@ import React from "react";
 import type {
   IDecodedMessage,
   IDecoder,
-  IStoreSDK,
+  IStore,
+  IWaku,
   QueryRequestParams,
-  Waku,
 } from "@waku/interfaces";
 
 import type { HookState } from "./types";
 
-type AbstractStoreNode = Waku & {
-  store: IStoreSDK;
+type AbstractStoreNode = IWaku & {
+  store: IStore;
 };
 
 type UseStoreMessagesParams = {
