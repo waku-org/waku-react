@@ -1,5 +1,5 @@
 import React from "react";
-import type { LightNode, Waku } from "@waku/interfaces";
+import type { IWaku, LightNode } from "@waku/interfaces";
 import { createLightNode, waitForRemotePeer } from "@waku/sdk";
 
 import type {
@@ -10,11 +10,11 @@ import type {
 
 type NodeFactory<N, T = {}> = (options?: T) => Promise<N>;
 
-type CreateNodeParams<N extends Waku, T = {}> = BootstrapNodeOptions<T> & {
+type CreateNodeParams<N extends IWaku, T = {}> = BootstrapNodeOptions<T> & {
   factory: NodeFactory<N, T>;
 };
 
-const useCreateNode = <N extends Waku, T = {}>(
+const useCreateNode = <N extends IWaku, T = {}>(
   params: CreateNodeParams<N, T>,
 ): CreateNodeResult<N> => {
   const { factory, options, protocols = [] } = params;

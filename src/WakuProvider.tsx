@@ -1,5 +1,5 @@
 import React from "react";
-import type { Waku } from "@waku/interfaces";
+import type { IWaku } from "@waku/interfaces";
 
 import type {
   BootstrapNodeOptions,
@@ -9,9 +9,9 @@ import type {
 } from "./types";
 import { useCreateLightNode } from "./useCreateWaku";
 
-type WakuContextType<T extends Waku> = CreateNodeResult<T>;
+type WakuContextType<T extends IWaku> = CreateNodeResult<T>;
 
-const WakuContext = React.createContext<WakuContextType<Waku>>({
+const WakuContext = React.createContext<WakuContextType<IWaku>>({
   node: undefined,
   isLoading: false,
   error: undefined,
@@ -29,7 +29,7 @@ const WakuContext = React.createContext<WakuContextType<Waku>>({
  * const { node, isLoading, error } = useWaku();
  * @returns WakuContext
  */
-export const useWaku = <T extends Waku>(): WakuContextType<T> =>
+export const useWaku = <T extends IWaku>(): WakuContextType<T> =>
   React.useContext(WakuContext) as WakuContextType<T>;
 
 type ProviderProps<T> = ReactChildrenProps & BootstrapNodeOptions<T>;
